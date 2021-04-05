@@ -1,0 +1,30 @@
+package shopping;
+
+import org.junit.jupiter.api.*;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+@DisplayName("Product List Checking")
+public class ProductListTest {
+    @BeforeAll
+    static void ListInitializer(){
+        ProductList pListObj = new ProductList();
+        pListObj.createList();
+    }
+    @DisplayName("Product List Checking")
+    @Test
+    void CreateListCheck(TestInfo testInfo){
+        System.out.println("Working on test:"+ testInfo.getDisplayName());
+        assertTrue(!ProductList.getList().isEmpty(), () -> "ProductList should not be empty.");
+
+    }
+    @DisplayName("Product List Checking")
+    @Test
+    void CreateListCheck2(TestInfo testInfo){
+        System.out.println("Working on test:"+ testInfo.getDisplayName());
+        assertTrue(ProductList.getList().get("A").getPrice()==50, () -> "ProductList should not be empty.");
+
+    }
+
+
+}
