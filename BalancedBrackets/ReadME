@@ -1,0 +1,29 @@
+Balanced Brackets Write a function that accepts a string consisting of only brackets ([](){}) and returns whether it is balanced. Every "opening" bracket must be followed by a closing bracket of the same type. There can also be nested brackets, which adhere to the same rule. Sample Inputs:
+#1
+Input: ()[]{}(([])){[()][]}
+Output: true
+#2
+Input: ())[]{}
+Output: false
+#3
+Input: [(])
+Output: true
+Expectations:
+• The candidate is expected to provide a running code with descriptive documentation
+• The candidate should also write unit test cases covering all the scenarios the candidate is able to comprehend
+
+
+TEST RESULT:
+Test run finished after 131 ms
+[         2 containers found      ]
+[         0 containers skipped    ]
+[         2 containers started    ]
+[         0 containers aborted    ]
+[         2 containers successful ]
+[         0 containers failed     ]
+[         5 tests found           ]
+[         0 tests skipped         ]
+[         5 tests started         ]
+[         0 tests aborted         ]
+[         5 tests successful      ]
+[         0 tests failed          ]
