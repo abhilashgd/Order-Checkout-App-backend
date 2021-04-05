@@ -1,4 +1,4 @@
-package java;
+package shopping;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -7,9 +7,11 @@ public class CheckOutService implements CheckOut {
     private static HashMap<String,Integer> orderList = new HashMap<>();
     public SpecialOffer soc;
 
-    public CheckOutService(SpecialOffer soc){
+    @Override
+    public void SpecialOfferServiceInitializer(SpecialOffer soc) {
         this.soc=soc;
     }
+
     @Override
     public void scan(String item) {
         if(orderList.isEmpty()){
@@ -24,12 +26,13 @@ public class CheckOutService implements CheckOut {
     @Override
     public int calculateMyOrderTotal() {
         for(Map.Entry<String,Integer> entry:orderList.entrySet()){
-                String item = entry.getKey();
-                int units = entry.getValue();
-                orderTotal+= soc.offer(item,units);
-            }
+            String item = entry.getKey();
+            int units = entry.getValue();
+            orderTotal+= soc.offer(item,units);
+        }
         return orderTotal;
     }
 
 
 }
+
