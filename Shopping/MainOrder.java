@@ -12,7 +12,7 @@ public class MainOrder {
     /*
      * Main method to initialise product List, scan items,calculate order total
      */
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws NumberFormatException {
         //Initialise Product List
         new ProductList().createList();
         //Select CheckoutService
@@ -20,14 +20,20 @@ public class MainOrder {
         //Select Offer Service
         co.SpecialOfferServiceInitializer(new SpecialOfferService());
         System.out.println("Enter Number of Products to be scanned");
-        int numberOfScans = Integer.valueOf(sc.nextLine());
-        System.out.println("Enter products");
+        int numberOfScans=0;
+        try {
+             numberOfScans = Integer.valueOf(sc.nextLine());
+            System.out.println("Enter products");
 
-        while(numberOfScans-->0) {
-            String item = sc.nextLine();
-            co.scan(item);
+            while(numberOfScans-->0) {
+                String item = sc.nextLine();
+                co.scan(item);
+            }
+            System.out.println("Order Total: "+co.calculateMyOrderTotal());
+
+        }catch (NumberFormatException e){
+            System.out.println("Not a number");
         }
-        System.out.println("Order Total: "+co.calculateMyOrderTotal());
     }
 }
 
