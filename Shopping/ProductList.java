@@ -1,6 +1,4 @@
-package java;
-
-import java.Product;
+package shopping;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -10,22 +8,15 @@ public class ProductList {
 
     public static HashMap<String,Product> getList(){ return plist;}
 
-    void createList(int N){
-        Scanner sc =  new Scanner(System.in);
-        System.out.println("Enter List Items: Item     Price  Special Offer  ");
-        while(N-->0){
-            String[] sarr = sc.nextLine().split(" ");
-            if(sarr.length ==2){
-                plist.put(sarr[0],new Product(sarr[0],Integer.valueOf(sarr[1])));
-            }
-            else if(sarr.length==5){plist.put(sarr[0],new Product(sarr[0],
-                                            Integer.valueOf(sarr[1]),
-                                            Integer.valueOf(sarr[2]),
-                                            Integer.valueOf(sarr[4])
-                                            )); }
-        }
 
+
+    void createList(){
+        plist.put("A",new Product("A",50,3,130));
+        plist.put("B",new Product("B",30,2,45));
+        plist.put("C",new Product("C",20,5,80));
+        plist.put("D",new Product("D",15,0,0));
     }
     void addListItem(){}
     void modifyListItem(){}
 }
+
