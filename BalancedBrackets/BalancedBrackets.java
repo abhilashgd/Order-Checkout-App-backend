@@ -1,4 +1,4 @@
-package Brackets;
+package BalancedBrackets;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -8,10 +8,10 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.InputMismatchException;
 /*
-*
-* Author: Abhilash GD
-* Class to Find whether nested brackets are balanced or not
-*
+ *
+ * Author: Abhilash GD
+ * Class to Find whether nested brackets are balanced or not
+ *
  */
 public class BalancedBrackets {
     /*
@@ -21,9 +21,9 @@ public class BalancedBrackets {
     private String yes="true";
     private String no="false";
     private final HashSet<Integer> indexSet = new HashSet<Integer>();
-/*
-*method to take input and print output
- */
+    /*
+     *method to take input and print output
+     */
     private void checkBalance() {
         System.out.println("Enter Number of Test Cases");
 
@@ -37,11 +37,11 @@ public class BalancedBrackets {
         outPut.getOutput();
     }
     /*
-    *method to check brackets are balanced or not
+     *method to check brackets are balanced or not
      */
     public String isBalanced(String bracketString) {
         this.bracketString=bracketString;
-       boolean bracketFound=false;
+        boolean bracketFound=false;
         for(int i=0;i<bracketString.length();i++){
             char ch = bracketString.charAt(i);
             if(ch=='('|| ch=='['|| ch=='{'){
@@ -55,9 +55,9 @@ public class BalancedBrackets {
         if(bracketFound) return yes;
         else return no;
     }
-/*
-* method to find the corresponding pair of an element inside the brackets string
- */
+    /*
+     * method to find the corresponding pair of an element inside the brackets string
+     */
     private boolean FindPair(char ch, int i) {
         boolean pairFound=false;
         if(ch=='('){
@@ -106,7 +106,7 @@ public class BalancedBrackets {
 
     }
     /*
-    * main method to set all initialisers and calls checkBalance method
+     * main method to set all initialisers and calls checkBalance method
      */
 
     public static void main(String[] args) throws Exception { new BalancedBrackets().run(); }
