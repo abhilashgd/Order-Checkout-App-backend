@@ -1,22 +1,71 @@
-plugins {
-    id 'java'
+buildscript {
+    repositories {
+        mavenCentral()
+// The following is only necessary if you want to use SNAPSHOT releases.
+// maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+    }
+    dependencies {
+        classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.1'
+    }
 }
 
-group 'com.junitbook'
+plugins {
+    id 'java'
+    id 'jacoco'
+}
+
+group 'com.supermarket'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
-
+apply plugin: 'jacoco'
 sourceCompatibility = 1.8
+apply plugin: 'org.junit.platform.gradle.plugin'
+
+junitPlatform{
+    filters{
+        includeClassNamePattern '.*Test'
+    }
+}
 
 repositories {
     mavenCentral()
 }
 dependencies {
     def junitVersion = '5.0.1'
-    def launcherVersiom = '1.0.1'
+    def launcherVersion = '1.0.1'
+    def assertJVersion='3.8.0'
     testCompile 'org.junit.jupiter:junit-jupiter-api:' + junitVersion
     testCompile 'org.junit.jupiter:junit-jupiter-engine:' + junitVersion
-    testCompile 'org.junit.platform:junit-platform-launcher:'+launcherVersiom
+    testCompile 'org.junit.platform:junit-platform-launcher:'+launcherVersion
+    testCompile 'org.assertj:assertj-core:'+assertJVersion
+    testCompile 'org.mockito:mockito-core:2.+'
 
+}
+
+
+apply plugin: 'jacoco'
+
+afterEvaluate {
+    def junitPlatformTestTask = (JavaExec) project.tasks.getByName('junitPlatformTest')
+
+    jacoco {
+        applyTo(junitPlatformTestTask)
+    }
+
+    project.task(type: JacocoReport, "jacocoJupTestReport") {
+        executionData(junitPlatformTestTask)
+        sourceSets(sourceSets.main)
+        sourceDirectories = files(sourceSets.main.allSource.srcDirs)
+        classDirectories = files(sourceSets.main.output)
+
+        reports {
+            xml.enabled true
+            xml.destination file("${buildDir}/jacoco/report.xml")
+            html.enabled true
+            html.destination file("${buildDir}/jacoco/html")
+        }
+    }
+
+    check.dependsOn jacocoJupTestReport
 }
