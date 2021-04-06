@@ -44,7 +44,7 @@ public class CheckoutServiceTest {
     }
 
     @Test
-    void calculateMyOrderTotalTest(){
+    void calculateMyOrderTotalTest1(){
         int orderTotal=0;
         co.SpecialOfferServiceInitializer(soc);
         co.scan("A");
@@ -57,6 +57,18 @@ public class CheckoutServiceTest {
         assertEquals(185,orderTotal);
 
     }
+
+    @Test
+    void calculateMyOrderTotalTest2(){
+        int orderTotal=0;
+        co.SpecialOfferServiceInitializer(soc);
+        co.scan("A");
+        co.scan("A");
+        co.scan("A");
+        orderTotal=co.calculateMyOrderTotal();
+        assertEquals(130,orderTotal);
+    }
+
 
     @AfterEach
     void clear(){
