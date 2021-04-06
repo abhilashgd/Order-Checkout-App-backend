@@ -19,6 +19,7 @@ public class CheckoutServiceTest {
         co=new CheckOutService();
         soc = new SpecialOfferService();
         new ProductList().createList();
+        co.SpecialOfferServiceInitializer(soc);
     }
 
     @Test
@@ -46,7 +47,6 @@ public class CheckoutServiceTest {
     @Test
     void calculateMyOrderTotalTest1(){
         int orderTotal=0;
-        co.SpecialOfferServiceInitializer(soc);
         co.scan("A");
         co.scan("A");
         co.scan("B");
@@ -61,7 +61,6 @@ public class CheckoutServiceTest {
     @Test
     void calculateMyOrderTotalTest2(){
         int orderTotal=0;
-        co.SpecialOfferServiceInitializer(soc);
         co.scan("A");
         co.scan("A");
         co.scan("A");
